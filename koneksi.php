@@ -1,9 +1,9 @@
 <?php
 $namaHost = "localhost";
 $username = "root";
-$password = "12345678";
+$password = "";
 $database = "project_uts";
-$base_url = "http://localhost/project-uts/";
+$base_url = "http://localhost/project-web/";
 
 
 $connect = mysqli_connect($namaHost, $username, $password, $database);

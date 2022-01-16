@@ -10,9 +10,9 @@ if (isset($_GET['id'])) {
 include '../koneksi.php';
 
 
-
-
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,17 +56,20 @@ include '../koneksi.php';
                                 <a class="btn mt-3 text-light" style="background-color: #7F67BE;" href="view/register.php">Sign Up</a>
                             </li>
                         <?php  } else { ?>
-                            <div class="dropdown mt-4">
-                                <button class="btn btn-outline text-black dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user-circle me-2"></i>
-                                    <?php echo $_SESSION['name'] ?>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="#">Edit Profile</a></li>
-                                    <li><a class="dropdown-item" href="#">Saved Location</a></li>
-                                    <li><a class="dropdown-item" href="../logout.php">Logout</a></li>
-                                </ul>
-                            </div>
-                        <?php } ?>
+						<li class="nav-item mt-2">
+						  <a class="nav-link text-black mt-3 me-3" href="daftar_transaksi.php?id=<?= $_SESSION['id'] ?>">Daftar transaksi</a>
+						</li>
+						<div class="dropdown mt-3">
+						  <button class="btn btn-outline text-black dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+							<?php echo $_SESSION['name'] ?>
+						  </button>
+						  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<li><a class="dropdown-item" href="#">Edit Profile</a></li>
+							<li><a class="dropdown-item" href="#">Saved Location</a></li>
+							<li><a class="dropdown-item" href="logout.php">Logout</a></li>
+						  </ul>
+						</div>
+						<?php } ?>
                     </ul>
                 </div>
             </div>
@@ -152,13 +155,27 @@ include '../koneksi.php';
 
 
                 </div>
+
+				
                 <div class="col-md-4 offset-md-1">
                     <div class="p-2 shadow rounded-slide position-relative fixed-top">
                         <div class="card-body sticky-top">
+						<form action="../data_transaksi.php" method="POST">
                             <h5 class="card-title mb-3 text-truncate">Information</h5>
                             <p class="text-secondary text-truncate">Waktu Operasional : <?php echo $result['open_place']; ?></p>
-                            <p class="text-secondary text-truncate">Parkir Motor : Rp. 3.000,-</p>
-                            <p class="text-secondary text-truncate">Parkir Mobil : Rp. 5.000,-</p>
+                            <p class="text-secondary text-truncate">Parkir motor : <input type="text" name="j_motor" size="2" onKeyPress="if(this.value.length==1) return false;"> x Rp. 3.000,-</p>
+                            <p class="text-secondary text-truncate">Parkir Mobil : <input type="text" name="j_mobil" size="2" onKeyPress="if(this.value.length==1) return false;"> x Rp. 5.000,-</p>
+                            <p class="text-secondary text-truncate">Harga tiket : Rp. <?= $result['price'] ?>-</p>
+                            <p class="text-secondary text-truncate">Tiket tersedia : <?= $result['tiket'] ?></p>
+	
+							<input type="hidden" name="id" value="<?= $result['id_place'] ?>">
+							<input type="hidden" name="harga" value="<?= $result['price'] ?>">
+							<input type="hidden" name="nm_place" value="<?= $result['name_place'] ?>">
+                            <p class="text-secondary text-truncate" >Masukan jumlah tiket</p>
+							
+                            <p><input type="text" name="j_tiket" size="15" onKeyPress="if(this.value.length==2) return false;">
+							<td><input type="submit" name="submit" value="submit"></td>
+							</form>
                             <div class="d-grid gap-2">
                                 <button href="<?= $result['map'] ?>" class="btn text-light mt-3" style="background-color: #7F67BE;">Show Map</button>
                                 <button class="btn text-light" style="background-color: #7F67BE;">Check Availability</button>

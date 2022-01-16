@@ -23,7 +23,7 @@ include "koneksi.php"
 <body>
 
   <!-- Navbar -->
-
+				
   <div class="container-fluid mb-4">
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container">
@@ -49,6 +49,9 @@ include "koneksi.php"
               <a class="btn mt-3 text-light" style="background-color: #7F67BE;" href="view/register.php">Sign Up</a>
             </li>
           <?php  } else { ?>
+			<li class="nav-item mt-2">
+              <a class="nav-link text-black mt-3 me-3" href="view/daftar_transaksi.php?id=<?= $_SESSION['id'] ?>">Daftar transaksi</a>
+			</li>
             <div class="dropdown mt-3">
               <button class="btn btn-outline text-black dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 <?php echo $_SESSION['name'] ?>
@@ -59,13 +62,12 @@ include "koneksi.php"
                 <li><a class="dropdown-item" href="logout.php">Logout</a></li>
               </ul>
             </div>
-          <?php } ?>
+			<?php } ?>
           </ul>
         </div>
       </div>
     </nav>
   </div>
-
   <!-- End Navbar -->
 
   <!-- Header -->
